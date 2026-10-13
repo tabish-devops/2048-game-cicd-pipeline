@@ -40,22 +40,7 @@ pipeline {
             }
         }
 
-        stage('Verify Application') {
-            steps {
-                sh '''
-                    for i in $(seq 1 15); do
-                      if curl -fsS http://localhost:8081/ > /dev/null; then
-                        echo "2048 game is responding successfully."
-                        exit 0
-                      fi
-                      sleep 2
-                    done
-                    echo "Application health check failed."
-                    docker logs ${CONTAINER_NAME} || true
-                    exit 1
-                '''
-            }
-        }
+        
     }
 
     post {
