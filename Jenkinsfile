@@ -60,7 +60,7 @@ pipeline {
                     done
 
                     echo "Application health check failed."
-                    docker logs ${CONTAINER_NAME}
+                    docker logs ${CONTAINER_NAME} || true
                     exit 1
                 '''
             }
@@ -72,7 +72,7 @@ pipeline {
             echo 'Pipeline successful. Application deployed on port 8081.'
         }
         failure {
-            echo 'Pipeline failed. Check Jenkins Console Output.'
+            echo 'Pipeline failed. Check the stage logs in Jenkins.'
         }
     }
 }
